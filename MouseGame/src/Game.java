@@ -1,11 +1,14 @@
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Game
 {
+	//Confusing part, needs to add enemies still. 
+	//To add enemies to game you gotta do something with a new list.
+	//then pass that to everything that needs.
 	private ArrayList<Tile> tList = new ArrayList<Tile>();
 	private ArrayList<Player> pList = new ArrayList<Player>();
-	private int e = KeyEvent.VK_RIGHT;
+	private Random rand = new Random();
 	
 	public ArrayList<Tile> gettList()
 	{
@@ -19,6 +22,8 @@ public class Game
 
 	public ArrayList<Player> getpList()
 	{
+		if(rand.nextDouble() > .5)
+			pList.add(new Enemy());
 		return pList;
 	}
 
@@ -27,22 +32,14 @@ public class Game
 		this.pList = pList;
 	}
 
-	public int getE()
-	{
-		return e;
-	}
-
-	public void setE(int e)
-	{
-		this.e = e;
-	}
-
 	public Game(){
 		
 	}
 	
-	public Game(ArrayList<Tile> tlist, ArrayList<Player> pList){
-		setTList(createMaze(tlist, pList));
+	public Game(ArrayList<Tile> tlist, Player human){
+		setTList(createMaze(tlist, human));
+		ArrayList<Player> pList = new ArrayList<Player>();
+		pList.add(human);
 		setpList(pList);
 	}
 	
@@ -54,16 +51,15 @@ public class Game
 		return tList;
 	}
 	
-	private ArrayList<Tile> createMaze(ArrayList<Tile> list, ArrayList<Player> pList){	
+	private ArrayList<Tile> createMaze(ArrayList<Tile> list, Player human){	
 		for(int i = 0; i < 100; i++){
 			Tile tile = new Tile();
 			list.add(tile);
 			
 			tile.setGameLocation(i);
-			if(i == pList.get(0).getLocation() || i == 0){
-				tile.randomize();
+			if(i == human.getLocation() || i == 0){
+				tile.setC(human.getC());
 				tile.setIsWall(true);
-				System.out.println("Match");
 			}
 		}
 		return list;

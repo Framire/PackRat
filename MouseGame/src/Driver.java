@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Driver
 {
@@ -6,12 +11,51 @@ public class Driver
 		ArrayList<Tile> tList = new ArrayList<Tile>();
 		ArrayList<Player> pList = new ArrayList<Player>();
 		
-		Player test = new Player();
-		int testLocal = 0;
-		test.setLocation(testLocal);
-		pList.add(test);
+		Human human = new Human();
+		File saveFile = new File("profile1.txt");
+		try{
+			Scanner input = new Scanner(saveFile);
+			
+			while(input.hasNextLine()){
+				try {
+					String name = input.nextLine();
+					int level = input.nextInt();
+					int exp = input.nextInt();
+					int strength = input.nextInt();
+					int dexterity = input.nextInt();
+					int charisma = input.nextInt();
+					int intelligence = input.nextInt();
+					int will = input.nextInt();
+					int money = input.nextInt();
+					int luck = input.nextInt();
+					int piety = input.nextInt();
+					human = new Human(name,level,exp,strength,dexterity,charisma,intelligence,will,money,luck,piety);
+				}
+				catch(InputMismatchException e){
+					input.next();
+				}
+			}
+			input.close();
+			System.out.println(human);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Could not load file!\nCreating new dude");
+			human = new Human();
+			try
+			{
+				FileWriter fw = new FileWriter("profile1.txt");
+				fw.write("what");
+			}
+			catch (IOException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		pList.add(human);
 		
-		Game game = new Game(tList,pList);
+		Game game = new Game(tList,human);
 		
 		GameFrame gFrame = new GameFrame(game.getTList(),game);
 	}

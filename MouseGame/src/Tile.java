@@ -12,7 +12,8 @@ public class Tile extends JPanel
 	private boolean isCheese;
 	private boolean isPlayer;
 	private int gameLocation;
-	private int health = 2;
+	private int health = 1;
+	private Color c;
 	
 	public Tile() {
 		this.chooseWall();
@@ -21,6 +22,7 @@ public class Tile extends JPanel
 	//When given a tile, itself, that tile should randomize itself. Somewhat confusing.
 	public Tile(Tile tile) {
 		tile.randomize();
+		
 	}
 	
 	//Method used to create random numbers, gets used in a few different places.
@@ -33,15 +35,22 @@ public class Tile extends JPanel
 		red = 255;
 		green = 255;
 		blue = 255;
+		c = new Color(red,green,blue);
 	}
 	
-	public void damageWall(){
-		health--;
-		red = (red * health) % 128;
-		green = (green * health) % 128;
-		blue = (blue * health) % 128;
-		if(health == 0)
+	public void damageWall(int damage){
+		health = health - damage;
+		red = 25;
+		green = 250;
+		blue = 250;
+		c = new Color(red,green,blue);
+		if(health <= 0){
 			setIsWall(true);
+			red = 250;
+			green = 40;
+			blue = 1;
+			c = new Color(red,green,blue);
+		}
 	}
 	
 	public void chooseWall(){
@@ -57,6 +66,7 @@ public class Tile extends JPanel
 			red = 255;
 			green = 255;
 			blue = 255;
+			c = new Color(red,green,blue);
 		}
 	}
 	
@@ -66,6 +76,7 @@ public class Tile extends JPanel
 		green = randomNum(0,255);
 		blue = randomNum(0,255);
 		
+		c = new Color(red,green,blue);
 		char chooseLetter = (char) randomNum(65,91);
 		tileLetter = "" + chooseLetter;
 	}
@@ -85,8 +96,6 @@ public class Tile extends JPanel
 		super.paintComponent(g);
 		int width = getWidth() - 5;
 		int height = getHeight()  - 5;
-		Color c = new Color(red,green,blue);
-		
 		Random rand = new Random();
 		double random = rand.nextDouble();
 		if(getIsWall()){
@@ -98,8 +107,6 @@ public class Tile extends JPanel
 			g.fillRect(5, 5, width, height);
 		}
 	}
-	
-	
 	
 	public String getTileLetter() {
 		return tileLetter;
@@ -193,6 +200,16 @@ public class Tile extends JPanel
 	public void setHealth(int health)
 	{
 		this.health = health;
+	}
+
+	public Color getC()
+	{
+		return c;
+	}
+
+	public void setC(Color c)
+	{
+		this.c = c;
 	}
 	
 	
