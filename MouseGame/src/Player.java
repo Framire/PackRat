@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player
 {
@@ -21,6 +22,7 @@ public class Player
 	private int luck = 1;
 	private int piety = 1;
 	private Color c = Color.RED;
+	private boolean isDead = false;
 	
 	public void moveLeft(ArrayList<Tile> tList){
 		Tile currentTile = tList.get(location);
@@ -216,6 +218,9 @@ public class Player
 	public void setHealth(int health)
 	{
 		this.health = health;
+		if(this.health <= 0){
+			this.isDead = true;
+		}
 	}
 
 	public int getDamage()
@@ -337,11 +342,88 @@ public class Player
 	{
 		this.c = c;
 	}
+	
+	public boolean bumpIntoPlayer(Player e){
+		boolean isPlayer = false;
+		
+		if(this.getLocation() == e.getLocation()){
+			isPlayer = true;
+		}
+		
+		return isPlayer;
+	}
+	
+	public void gainXp(Player e){
+		int current = getExp();
+		current = current + getIntelligence() * ((e.getExp()/2) + 1);
+		setExp(current);
+		gainLevel(getExp());
+	}
+	
+	public void gainLevel(int exp){
+		if(exp >= getLevel()){
+			setLevel(getLevel()+1);
+			setExp(0);
+			Random rand = new Random();
+			int choice = rand.nextInt(7);
+			switch(choice){
+				case 0:{
+					setStrength(getStrength()+1);
+					break;
+				}
+				case 1:{
+					setDexterity(getDexterity()+1);
+					break;
+				}
+				case 2:{
+					setCharisma(getCharisma()+1);
+					break;
+				}
+				case 3:{
+					setIntelligence(getIntelligence()+1);
+					break;
+				}
+				case 4:{
+					setWill(getWill()+1);
+					break;
+				}
+				case 5:{
+					setLuck(getLuck()+1);
+					break;
+				}
+				case 6:{
+					setPiety(getPiety()+1);
+					break;
+				}
+				default:{
+					
+					break;
+				}
+			}
+		}
+	}
+	
+	public boolean fightOther(Player e){
+		e.damageThis(this.getDamage());
+		
+		System.out.println("I DIED");
+		if(e.isDead){
+			gainXp(e);
+			
+		}
+		return e.isDead;
+	}	
+	
+	private void damageThis(int dam){
+		int currentHp = getHealth();
+		currentHp = currentHp - dam;
+		setHealth(currentHp);
+	}
 
 	@Override
 	public String toString()
 	{
-		return "I am name " + name + "\nhealth=" + health + " damage="
+		return "I am " + name + "\nhealth=" + health + " damage="
 				+ damage + " level=" + level + " exp=" + exp + " money=" + money + "\nstrength="
 				+ strength + " dexterity=" + dexterity + " charisma="
 				+ charisma + "\nintelligence=" + intelligence + " will=" + will

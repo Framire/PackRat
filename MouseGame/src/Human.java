@@ -26,4 +26,14 @@ public class Human extends Player
 		setDamage(getDamage(), getStrength());
 		setC(Color.YELLOW);
 	}
+	
+	public boolean reviveMe(){
+		boolean revived = false;
+		
+		if(getHealth() >= 0){
+			revived = true;
+			setLocation(1);
+		}
+		return revived;
+	}
 }

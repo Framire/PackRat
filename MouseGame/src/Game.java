@@ -7,7 +7,8 @@ public class Game
 	//To add enemies to game you gotta do something with a new list.
 	//then pass that to everything that needs.
 	private ArrayList<Tile> tList = new ArrayList<Tile>();
-	private ArrayList<Player> pList = new ArrayList<Player>();
+	private ArrayList<Human> pList = new ArrayList<Human>();
+	private ArrayList<Enemy> eList = new ArrayList<Enemy>();
 	private Random rand = new Random();
 	
 	public ArrayList<Tile> gettList()
@@ -19,15 +20,25 @@ public class Game
 	{
 		this.tList = tList;
 	}
+	
+	public ArrayList<Enemy> geteList()
+	{
+		return eList;
+	}
 
-	public ArrayList<Player> getpList()
+	public void seteList(ArrayList<Enemy> eList)
+	{
+		this.eList = eList;
+	}
+
+	public ArrayList<Human> getpList()
 	{
 		if(rand.nextDouble() > .5)
-			pList.add(new Enemy());
+			eList.add(new Enemy());
 		return pList;
 	}
 
-	public void setpList(ArrayList<Player> pList)
+	public void setpList(ArrayList<Human> pList)
 	{
 		this.pList = pList;
 	}
@@ -36,9 +47,9 @@ public class Game
 		
 	}
 	
-	public Game(ArrayList<Tile> tlist, Player human){
+	public Game(ArrayList<Tile> tlist, Human human){
 		setTList(createMaze(tlist, human));
-		ArrayList<Player> pList = new ArrayList<Player>();
+		ArrayList<Human> pList = new ArrayList<Human>();
 		pList.add(human);
 		setpList(pList);
 	}

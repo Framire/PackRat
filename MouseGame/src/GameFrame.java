@@ -37,10 +37,10 @@ public class GameFrame extends JFrame
 		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "Move South");
 		input.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "Move North");
 		
-		action.put("Move Left", new MyKeyBinding(tList,tilePanel,0,game.getpList().get(0)));
-		action.put("Move Right", new MyKeyBinding(tList,tilePanel,1,game.getpList().get(0)));
-		action.put("Move South", new MyKeyBinding(tList,tilePanel,2,game.getpList().get(0)));
-		action.put("Move North", new MyKeyBinding(tList,tilePanel,3,game.getpList().get(0)));
+		action.put("Move Left", new MyKeyBinding(tList,tilePanel,0,game.getpList().get(0),game.geteList()));
+		action.put("Move Right", new MyKeyBinding(tList,tilePanel,1,game.getpList().get(0), game.geteList()));
+		action.put("Move South", new MyKeyBinding(tList,tilePanel,2,game.getpList().get(0),game.geteList()));
+		action.put("Move North", new MyKeyBinding(tList,tilePanel,3,game.getpList().get(0),game.geteList()));
 		
 		MyKeyListener keyListen = new MyKeyListener();
 		//content.addKeyListener(keyListen);

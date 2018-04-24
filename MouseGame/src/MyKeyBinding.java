@@ -1,5 +1,7 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.AbstractAction;
 import javax.swing.JPanel;
@@ -9,17 +11,28 @@ public class MyKeyBinding extends AbstractAction
 	//Turn based game, everything moves after player does.
 	private int keyLocal;
 	private ArrayList<Enemy> eList;
-	private Player p;
+	private Human p;
 	private ArrayList<Tile> tList = new ArrayList<Tile>();
 	private JPanel panel;
 	private int direction;
+	private Random rand = new Random();
 	
-	public MyKeyBinding(ArrayList<Tile> tList, JPanel panel, int dir, Player p){
+	public MyKeyBinding(ArrayList<Tile> tList, JPanel panel, int dir, Human p, ArrayList<Enemy> enemyList){
 		setP(p);
 		settList(tList);
 		setPanel(panel);
 		setDirection(dir);
-		
+		seteList(enemyList);
+	}
+	
+	public ArrayList<Enemy> geteList()
+	{
+		return eList;
+	}
+
+	public void seteList(ArrayList<Enemy> eList)
+	{
+		this.eList = eList;
 	}
 
 	public int getKeyLocal()
@@ -45,7 +58,7 @@ public class MyKeyBinding extends AbstractAction
 		return p;
 	}
 
-	public void setP(Player p)
+	public void setP(Human p)
 	{
 		this.p = p;
 	}
@@ -76,17 +89,301 @@ public class MyKeyBinding extends AbstractAction
 		if(getDirection() == 1)
 		{
 			p.moveLeft(tList);
-			for(Enemy enemy: eList){
-				
+			int random = 0;
+			try{
+				for(Enemy enemy: eList){
+					random = rand.nextInt(4);
+					if(random == 0){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveLeft(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 1){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveNorth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 2){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveSouth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 3){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveRight(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+				}	
+			}
+			catch(Exception e1){
+				tList.get(p.getLocation()).setC(Color.yellow);
+			}
+		}	
+		else if(getDirection() == 0){
+			p.moveRight(tList);
+			int random = 0;
+			try{
+				for(Enemy enemy: eList){
+					random = rand.nextInt(4);
+					if(random == 0){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveLeft(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 1){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveNorth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 2){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveSouth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 3){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveRight(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+				}	
+			}
+			catch(Exception e1){
+				tList.get(p.getLocation()).setC(Color.yellow);
 			}
 		}
-		else if(getDirection() == 0)
-			p.moveRight(tList);
-		else if(getDirection() == 2)
+		else if(getDirection() == 2){
+			int random = 0;
 			p.moveSouth(tList);
-		else if(getDirection() == 3)
+			try{
+				for(Enemy enemy: eList){
+					random = rand.nextInt(4);
+					if(random == 0){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveLeft(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 1){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveNorth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 2){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveSouth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 3){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveRight(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+				}	
+			}
+			catch(Exception e1){
+				tList.get(p.getLocation()).setC(Color.yellow);
+			}
+		}
+		else if(getDirection() == 3){
+			int random = 0;
 			p.moveNorth(tList);
+			try{
+				for(Enemy enemy: eList){
+					random = rand.nextInt(4);
+					if(random == 0){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveLeft(tList);
+							if(enemy.bumpIntoPlayer(p)){
+								if(enemy.fightOther(p)){
+									p.reviveMe();
+								}
+								
+							}
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 1){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveNorth(tList);
+							if(enemy.bumpIntoPlayer(p)){
+								if(enemy.fightOther(p)){
+									p.reviveMe();
+								}
+								
+							}
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 2){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveSouth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+					else if(random == 3){
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveRight(tList);
+							if(enemy.bumpIntoPlayer(p)){
+								if(enemy.fightOther(p)){
+									p.reviveMe();
+								}
+								
+							}
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								enemy.fightOther(p);
+							}
+						}
+					}
+				}	
+			}
+			catch(Exception e1){
+				tList.get(p.getLocation()).setC(Color.yellow);
+			}
+		}
+		
+		if(rand.nextInt(10) == 0){
+			Enemy enemy = new Enemy();
+			eList.add(enemy);
+		}
 		panel.repaint();
+		System.out.println(p);
 	}
 
 	
