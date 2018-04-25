@@ -30,9 +30,10 @@ public class Human extends Player
 	public boolean reviveMe(){
 		boolean revived = false;
 		
-		if(getHealth() >= 0){
+		if(getHealth() <= 0){
 			revived = true;
-			setLocation(1);
+			setLocation(0);
+			setHealth(10);
 		}
 		return revived;
 	}

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 public class MyKeyBinding extends AbstractAction
 {
+	//FIX THE FUCKING COMBAT, IT'S ALL MESSED UP. CONSIDER REDOING IT.
 	//Turn based game, everything moves after player does.
 	private int keyLocal;
 	private ArrayList<Enemy> eList;
@@ -16,6 +17,7 @@ public class MyKeyBinding extends AbstractAction
 	private JPanel panel;
 	private int direction;
 	private Random rand = new Random();
+	private ArrayList<Player> pList = new ArrayList<Player>();
 	
 	public MyKeyBinding(ArrayList<Tile> tList, JPanel panel, int dir, Human p, ArrayList<Enemy> enemyList){
 		setP(p);
@@ -23,6 +25,10 @@ public class MyKeyBinding extends AbstractAction
 		setPanel(panel);
 		setDirection(dir);
 		seteList(enemyList);
+		pList.add(p);
+		for(Enemy e: enemyList){
+			pList.add(e);
+		}
 	}
 	
 	public ArrayList<Enemy> geteList()
@@ -94,34 +100,39 @@ public class MyKeyBinding extends AbstractAction
 				for(Enemy enemy: eList){
 					random = rand.nextInt(4);
 					if(random == 0){
+						for(Player p: pList)
+						//If the player is not the path of the enemy, then it will move.
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveLeft(tList);
-						}
+						}//If it is in the path of the enemy, they fight.
 						else if(p.bumpIntoPlayer(enemy)){
+							//If player attacks another thing, then enemy is removed.
 							if(p.fightOther(enemy)){
 								eList.remove(enemy);
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								//Else if the enemy kills the player, then the player is revived.
 							}
 						}
 					}
 					else if(random == 1){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveNorth(tList);
 						}
 						else if(p.bumpIntoPlayer(enemy)){
 							if(p.fightOther(enemy)){
 								eList.remove(enemy);
-								tList.get(p.getLocation()).setC(Color.yellow);;
+								tList.get(p.getLocation()).setC(p.getC());;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 2){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveSouth(tList);
 						}
@@ -131,11 +142,12 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 3){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveRight(tList);
 						}
@@ -145,7 +157,7 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
@@ -162,6 +174,7 @@ public class MyKeyBinding extends AbstractAction
 				for(Enemy enemy: eList){
 					random = rand.nextInt(4);
 					if(random == 0){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveLeft(tList);
 						}
@@ -171,39 +184,12 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 1){
-						if(!p.bumpIntoPlayer(enemy)){
-							enemy.moveNorth(tList);
-						}
-						else if(p.bumpIntoPlayer(enemy)){
-							if(p.fightOther(enemy)){
-								eList.remove(enemy);
-								tList.get(p.getLocation()).setC(Color.yellow);;
-							}
-							else{
-								enemy.fightOther(p);
-							}
-						}
-					}
-					else if(random == 2){
-						if(!p.bumpIntoPlayer(enemy)){
-							enemy.moveSouth(tList);
-						}
-						else if(p.bumpIntoPlayer(enemy)){
-							if(p.fightOther(enemy)){
-								eList.remove(enemy);
-								tList.get(p.getLocation()).setC(Color.yellow);;
-							}
-							else{
-								enemy.fightOther(p);
-							}
-						}
-					}
-					else if(random == 3){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveRight(tList);
 						}
@@ -213,7 +199,37 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
+							}
+						}
+					}
+					else if(random == 2){
+						for(Player p: pList)
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveSouth(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								
+							}
+						}
+					}
+					else if(random == 3){
+						for(Player p: pList)
+						if(!p.bumpIntoPlayer(enemy)){
+							enemy.moveRight(tList);
+						}
+						else if(p.bumpIntoPlayer(enemy)){
+							if(p.fightOther(enemy)){
+								eList.remove(enemy);
+								tList.get(p.getLocation()).setC(Color.yellow);;
+							}
+							else{
+								
 							}
 						}
 					}
@@ -230,6 +246,7 @@ public class MyKeyBinding extends AbstractAction
 				for(Enemy enemy: eList){
 					random = rand.nextInt(4);
 					if(random == 0){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveLeft(tList);
 						}
@@ -239,11 +256,12 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 1){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveNorth(tList);
 						}
@@ -253,11 +271,12 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 2){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveSouth(tList);
 						}
@@ -267,11 +286,12 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 3){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveRight(tList);
 						}
@@ -281,7 +301,7 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
@@ -300,32 +320,21 @@ public class MyKeyBinding extends AbstractAction
 					if(random == 0){
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveLeft(tList);
-							if(enemy.bumpIntoPlayer(p)){
-								if(enemy.fightOther(p)){
-									p.reviveMe();
-								}
-								
-							}
 						}
 						else if(p.bumpIntoPlayer(enemy)){
 							if(p.fightOther(enemy)){
 								eList.remove(enemy);
-								tList.get(p.getLocation()).setC(Color.yellow);;
+								tList.get(p.getLocation()).setC(Color.yellow);
+								System.out.println("That's a kill\n\n\n\n\n\n\n");
 							}
 							else{
-								enemy.fightOther(p);
+							
 							}
 						}
 					}
 					else if(random == 1){
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveNorth(tList);
-							if(enemy.bumpIntoPlayer(p)){
-								if(enemy.fightOther(p)){
-									p.reviveMe();
-								}
-								
-							}
 						}
 						else if(p.bumpIntoPlayer(enemy)){
 							if(p.fightOther(enemy)){
@@ -333,11 +342,12 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 2){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveSouth(tList);
 						}
@@ -347,17 +357,15 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}
 					else if(random == 3){
+						for(Player p: pList)
 						if(!p.bumpIntoPlayer(enemy)){
 							enemy.moveRight(tList);
 							if(enemy.bumpIntoPlayer(p)){
-								if(enemy.fightOther(p)){
-									p.reviveMe();
-								}
 								
 							}
 						}
@@ -367,7 +375,7 @@ public class MyKeyBinding extends AbstractAction
 								tList.get(p.getLocation()).setC(Color.yellow);;
 							}
 							else{
-								enemy.fightOther(p);
+								
 							}
 						}
 					}

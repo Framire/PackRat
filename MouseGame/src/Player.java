@@ -219,7 +219,7 @@ public class Player
 	{
 		this.health = health;
 		if(this.health <= 0){
-			this.isDead = true;
+			this.setDead(true);
 		}
 	}
 
@@ -403,18 +403,24 @@ public class Player
 		}
 	}
 	
-	public boolean fightOther(Player e){
+	public boolean fightOther(Enemy e){
 		e.damageThis(this.getDamage());
 		
 		System.out.println("I DIED");
-		if(e.isDead){
+		if(e.isDead()){
 			gainXp(e);
 			
 		}
-		return e.isDead;
+		return e.isDead();
 	}	
 	
-	private void damageThis(int dam){
+	public boolean fightOther(Human e){
+		e.damageThis(this.getDamage());
+		
+		return e.isDead();
+	}
+	
+	protected void damageThis(int dam){
 		int currentHp = getHealth();
 		currentHp = currentHp - dam;
 		setHealth(currentHp);
@@ -428,6 +434,16 @@ public class Player
 				+ strength + " dexterity=" + dexterity + " charisma="
 				+ charisma + "\nintelligence=" + intelligence + " will=" + will
 				+ " luck=" + luck + " piety=" + piety;
+	}
+
+	public boolean isDead()
+	{
+		return isDead;
+	}
+
+	public void setDead(boolean isDead)
+	{
+		this.isDead = isDead;
 	}
 	
 }

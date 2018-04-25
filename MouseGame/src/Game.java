@@ -9,6 +9,7 @@ public class Game
 	private ArrayList<Tile> tList = new ArrayList<Tile>();
 	private ArrayList<Human> pList = new ArrayList<Human>();
 	private ArrayList<Enemy> eList = new ArrayList<Enemy>();
+	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private Random rand = new Random();
 	
 	public ArrayList<Tile> gettList()
