@@ -8,9 +8,10 @@ public class Game
 	//then pass that to everything that needs.
 	private ArrayList<Tile> tList = new ArrayList<Tile>();
 	private ArrayList<Human> pList = new ArrayList<Human>();
-	private ArrayList<Enemy> eList = new ArrayList<Enemy>();
+	private ArrayList<Player> eList = new ArrayList<Player>();
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private Random rand = new Random();
+	private int gameSize = 10;
 	
 	public ArrayList<Tile> gettList()
 	{
@@ -22,12 +23,12 @@ public class Game
 		this.tList = tList;
 	}
 	
-	public ArrayList<Enemy> geteList()
+	public ArrayList<Player> geteList()
 	{
 		return eList;
 	}
 
-	public void seteList(ArrayList<Enemy> eList)
+	public void seteList(ArrayList<Player> eList)
 	{
 		this.eList = eList;
 	}
@@ -77,4 +78,16 @@ public class Game
 		return list;
 		
 	}
+
+	public int getGameSize()
+	{
+		return gameSize;
+	}
+
+	public void setGameSize(int gameSize)
+	{
+		this.gameSize = gameSize;
+	}
+	
+	
 }

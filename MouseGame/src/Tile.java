@@ -14,6 +14,7 @@ public class Tile extends JPanel
 	private int gameLocation;
 	private int health = 1;
 	private Color c;
+	private Player p;
 	
 	public Tile() {
 		this.chooseWall();
@@ -210,6 +211,16 @@ public class Tile extends JPanel
 	public void setC(Color c)
 	{
 		this.c = c;
+	}
+
+	public Player getP()
+	{
+		return p;
+	}
+
+	public void setP(Player p)
+	{
+		this.p = p;
 	}
 	
 	

@@ -37,4 +37,15 @@ public class Human extends Player
 		}
 		return revived;
 	}
+	
+	public Player humanAttack(ArrayList<Tile> tList, int location){
+		Tile tileTo = tList.get(location);
+		Player attacked = null;
+		if(tileTo.getP()!= null){
+			this.fightOther(tileTo.getP());
+			attacked = tileTo.getP();
+			System.out.println("Murdered");
+		}
+		return attacked;
+	}
 }

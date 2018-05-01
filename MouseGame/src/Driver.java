@@ -58,5 +58,6 @@ public class Driver
 		Game game = new Game(tList,human);
 		
 		GameFrame gFrame = new GameFrame(game.getTList(),game);
+		
 	}
 }

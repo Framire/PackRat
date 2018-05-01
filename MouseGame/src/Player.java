@@ -22,6 +22,7 @@ public class Player
 	private int luck = 1;
 	private int piety = 1;
 	private Color c = Color.RED;
+	private int gameSize;
 	private boolean isDead = false;
 	
 	public void moveLeft(ArrayList<Tile> tList){
@@ -31,11 +32,12 @@ public class Player
 			if(tileToLeft.getIsWall()){
 			tileToLeft.setC(this.getC());
 			location = tileToLeft.getGameLocation();
+			tileToLeft.setP(this);
+			currentTile.setP(null);
 			currentTile.resetTile();
 			setLocation(location);
 			}
 			else{
-				System.out.println("YOU HIT A WALL!");
 				tileToLeft.damageWall(damage);
 			}
 		}
@@ -51,12 +53,13 @@ public class Player
 			Tile tileToRight = tList.get(location + 1);
 			if(tileToRight.getIsWall()){
 				tileToRight.setC(this.getC());
+				tileToRight.setP(this);
+				currentTile.setP(null);
 				location = tileToRight.getGameLocation();
 				currentTile.resetTile();
 				setLocation(location);
 			}
 			else{
-				System.out.println("YOU HIT A WALL!");
 				tileToRight.damageWall(damage);
 			}
 		}
@@ -73,11 +76,12 @@ public class Player
 				tileBelow.setC(this.getC());
 				location = tileBelow.getGameLocation();
 				currentTile.resetTile();
+				tileBelow.setP(this);
+				currentTile.setP(null);
 				setLocation(location);
 				currentTile.resetTile();
 			}
 			else{
-				System.out.println("YOU HIT A WALL!");
 				tileBelow.damageWall(damage);
 			}
 		}
@@ -93,17 +97,17 @@ public class Player
 			Tile tileAbove = tList.get(location-10);
 			if(tileAbove.getIsWall()){
 			tileAbove.setC(getC());
+			tileAbove.setP(this);
+			currentTile.setP(null);
 			location = tileAbove.getGameLocation();
 			currentTile.resetTile();
 			setLocation(location);
 			}
 			else{
-				System.out.println("YOU HIT A WALL!");
 				tileAbove.damageWall(damage);
 			}
 		}
 	catch(ArrayIndexOutOfBoundsException e1){
-		e1.printStackTrace();
 		System.out.println("Out Of bounds");
 		}
 	}
@@ -346,9 +350,10 @@ public class Player
 	public boolean bumpIntoPlayer(Player e){
 		boolean isPlayer = false;
 		
-		if(this.getLocation() == e.getLocation()){
-			isPlayer = true;
-		}
+		if(e != null)
+			if(this.getLocation() == e.getLocation()){
+				isPlayer = true;
+			}
 		
 		return isPlayer;
 	}
@@ -403,7 +408,7 @@ public class Player
 		}
 	}
 	
-	public boolean fightOther(Enemy e){
+	public boolean fightOther(Player e){
 		e.damageThis(this.getDamage());
 		
 		System.out.println("I DIED");
@@ -413,12 +418,6 @@ public class Player
 		}
 		return e.isDead();
 	}	
-	
-	public boolean fightOther(Human e){
-		e.damageThis(this.getDamage());
-		
-		return e.isDead();
-	}
 	
 	protected void damageThis(int dam){
 		int currentHp = getHealth();
