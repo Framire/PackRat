@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Player
 {
-	
 	//Needs to have an inventory added later.
 	//Overall this is mostly done
 	private int location = 0;
@@ -29,7 +28,7 @@ public class Player
 		Tile currentTile = tList.get(location);
 		try{
 			Tile tileToLeft = tList.get(location-1);
-			if(tileToLeft.getIsWall()){
+			if(tileToLeft.getIsWall()  && !((location % 10) == 0)){
 			tileToLeft.setC(this.getC());
 			location = tileToLeft.getGameLocation();
 			tileToLeft.setP(this);
@@ -51,7 +50,7 @@ public class Player
 		Tile currentTile = tList.get(location);
 		try{
 			Tile tileToRight = tList.get(location + 1);
-			if(tileToRight.getIsWall()){
+			if(tileToRight.getIsWall()  && !(((location +1) % 10) == 0)){
 				tileToRight.setC(this.getC());
 				tileToRight.setP(this);
 				currentTile.setP(null);
@@ -366,7 +365,7 @@ public class Player
 	}
 	
 	public void gainLevel(int exp){
-		if(exp >= getLevel()){
+		if(exp >= getLevel()*5){
 			setLevel(getLevel()+1);
 			setExp(0);
 			Random rand = new Random();
@@ -435,13 +434,11 @@ public class Player
 				+ " luck=" + luck + " piety=" + piety;
 	}
 
-	public boolean isDead()
-	{
+	public boolean isDead() {
 		return isDead;
 	}
 
-	public void setDead(boolean isDead)
-	{
+	public void setDead(boolean isDead) {
 		this.isDead = isDead;
 	}
 	

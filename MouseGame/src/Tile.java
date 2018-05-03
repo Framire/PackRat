@@ -76,6 +76,7 @@ public class Tile extends JPanel
 		red = randomNum(0,255);
 		green = randomNum(0,255);
 		blue = randomNum(0,255);
+		chooseWall();
 		
 		c = new Color(red,green,blue);
 		char chooseLetter = (char) randomNum(65,91);
@@ -97,8 +98,6 @@ public class Tile extends JPanel
 		super.paintComponent(g);
 		int width = getWidth() - 5;
 		int height = getHeight()  - 5;
-		Random rand = new Random();
-		double random = rand.nextDouble();
 		if(getIsWall()){
 			g.setColor(c);
 			g.fillRect(5, 5, width, height);

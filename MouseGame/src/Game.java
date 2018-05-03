@@ -3,13 +3,9 @@ import java.util.Random;
 
 public class Game
 {
-	//Confusing part, needs to add enemies still. 
-	//To add enemies to game you gotta do something with a new list.
-	//then pass that to everything that needs.
 	private ArrayList<Tile> tList = new ArrayList<Tile>();
 	private ArrayList<Human> pList = new ArrayList<Human>();
 	private ArrayList<Player> eList = new ArrayList<Player>();
-	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private Random rand = new Random();
 	private int gameSize = 10;
 	
@@ -35,8 +31,6 @@ public class Game
 
 	public ArrayList<Human> getpList()
 	{
-		if(rand.nextDouble() > .5)
-			eList.add(new Enemy());
 		return pList;
 	}
 
@@ -65,7 +59,7 @@ public class Game
 	}
 	
 	private ArrayList<Tile> createMaze(ArrayList<Tile> list, Player human){	
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < (gameSize * gameSize); i++){
 			Tile tile = new Tile();
 			list.add(tile);
 			
@@ -77,6 +71,11 @@ public class Game
 		}
 		return list;
 		
+	}
+	
+	public void randomizeGame(Game game){
+		this.settList(new ArrayList<Tile>());
+		this.createMaze(this.getTList(), this.getpList().get(0));
 	}
 
 	public int getGameSize()

@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Human extends Player
@@ -47,5 +49,30 @@ public class Human extends Player
 			System.out.println("Murdered");
 		}
 		return attacked;
+	}
+	
+	public String saveInfo(){
+		String toReturn = "";
+		toReturn = this.getName() + "\n" + this.getLevel() + "\n" + this.getExp() + "\n" + this.getMoney()+
+				"\n" + this.getStrength() + "\n" + this.getDexterity() + "\n" + this.getCharisma() + "\n" +
+				this.getIntelligence() + "\n" + this.getWill() + "\n" + this.getLuck() + "\n" + this.getPiety();
+		
+		return toReturn;
+	}
+	
+	public void saveGame(){
+		try
+		{
+			FileWriter fw = new FileWriter("profile.txt");
+			fw.write(this.saveInfo());
+			fw.close();
+			System.out.println("Save Completed");
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

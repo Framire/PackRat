@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 
 public class MyKeyBinding extends AbstractAction
 {
-	//FIX THE FUCKING COMBAT, IT'S ALL MESSED UP. CONSIDER REDOING IT.
-	//Turn based game, everything moves after player does.
 	private int keyLocal;
 	private ArrayList<Player> eList;
 	private Human p;
@@ -115,7 +113,7 @@ public class MyKeyBinding extends AbstractAction
 				//e1.printStackTrace();
 			}
 		}
-		if(rand.nextInt(15) == 0){
+		if(rand.nextInt(5) == 0){
 			Enemy enemy = new Enemy();
 			eList.add(enemy);
 		}

@@ -12,7 +12,7 @@ public class Driver
 		ArrayList<Player> pList = new ArrayList<Player>();
 		
 		Human human = new Human();
-		File saveFile = new File("profile1.txt");
+		File saveFile = new File("profile.txt");
 		try{
 			Scanner input = new Scanner(saveFile);
 			
@@ -45,7 +45,7 @@ public class Driver
 			try
 			{
 				FileWriter fw = new FileWriter("profile1.txt");
-				fw.write("what");
+				fw.close();
 			}
 			catch (IOException e1)
 			{
@@ -56,7 +56,6 @@ public class Driver
 		pList.add(human);
 		
 		Game game = new Game(tList,human);
-		
 		GameFrame gFrame = new GameFrame(game.getTList(),game);
 		
 	}
