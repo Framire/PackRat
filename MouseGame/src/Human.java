@@ -3,6 +3,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*
+ * This is the player themself. They have additional functions that npcs will not.
+ */
 public class Human extends Player
 {	
 	private String name = "Dude";
@@ -27,7 +30,7 @@ public class Human extends Player
 		setPiety(pie);
 		setDamage(getDamage(), getStrength());
 		setC(Color.YELLOW);
-	}
+		}
 	
 	public boolean reviveMe(){
 		boolean revived = false;

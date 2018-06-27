@@ -24,6 +24,7 @@ public class GameFrame extends JFrame
 		setBounds(0,0,500,500);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("PackRat");
 		
 		JMenuBar mb = new JMenuBar();
 		JMenu file = new JMenu("File");

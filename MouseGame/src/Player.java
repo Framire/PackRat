@@ -1,8 +1,13 @@
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Player
+/*
+ * Describes any character in the game
+ * 
+ */
+public abstract class Player
 {
 	//Needs to have an inventory added later.
 	//Overall this is mostly done
@@ -23,6 +28,7 @@ public class Player
 	private Color c = Color.RED;
 	private int gameSize;
 	private boolean isDead = false;
+	private BufferedImage avatar = null;
 	
 	public void moveLeft(ArrayList<Tile> tList){
 		Tile currentTile = tList.get(location);
@@ -441,5 +447,31 @@ public class Player
 	public void setDead(boolean isDead) {
 		this.isDead = isDead;
 	}
+
+	public int getGameSize()
+	{
+		return gameSize;
+	}
+
+	public void setGameSize(int gameSize)
+	{
+		this.gameSize = gameSize;
+	}
+
+	public BufferedImage getAvatar()
+	{
+		return avatar;
+	}
+
+	public void setAvatar(BufferedImage avatar)
+	{
+		this.avatar = avatar;
+	}
+
+	public void setDamage(int damage)
+	{
+		this.damage = damage;
+	}
+	
 	
 }

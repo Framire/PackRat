@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/*
+ * Launches and prepares the game. Checks to see if a profile exists
+ * Creates a game object and gameframe
+ */
 public class Driver
 {
 	public static void main(String[] args){
