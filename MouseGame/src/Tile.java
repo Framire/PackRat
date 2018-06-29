@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import javax.swing.JPanel;
 
-import DropTable.Item;
-import DropTable.Weapon;
+import dropTable.Item;
+import dropTable.Weapon;
 
 public class Tile extends JPanel
 {

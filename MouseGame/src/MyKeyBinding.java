@@ -112,7 +112,7 @@ public class MyKeyBinding extends AbstractAction
 		combat();
 		}
 		else {
-			if(getActionName().contains("Pickup") && tList.get(p.getLocation()).getInventory().size()>0) {
+			if(getActionName().contains("PickUp") && tList.get(p.getLocation()).getInventory().size()>0) {
 				getP().pickUpItem(tList.get(p.getLocation()).itemPickedUp());
 			}
 		}

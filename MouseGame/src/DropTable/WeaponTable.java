@@ -1,4 +1,4 @@
-package DropTable;
+package dropTable;
 
 import java.io.File;
 import java.io.FileReader;

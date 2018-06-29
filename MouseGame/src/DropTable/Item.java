@@ -1,4 +1,4 @@
-package DropTable;
+package dropTable;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class Item
 	}
 	
 	public String toString() {
-		String itemInfo = "Item Name: %s, ID: %d", name, itemID;
+		String itemInfo = String.format("Item Name: %s, ID: %d", name, itemID);
 		
 		return itemInfo;
 	}

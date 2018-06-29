@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+
+//Don't touch this class, it does things to make sure keys are working fine.
 public class MyKeyListener implements KeyListener
 {
 	private int keyLocal;

@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+//Don't touch this class, makes sure actions work as intended.
 public class NewGameAction extends AbstractAction implements ActionListener
 {
 	private static final long serialVersionUID = -7557532364836723543L;

@@ -1,4 +1,4 @@
-package DropTable;
+package dropTable;
 
 //Describes weapons that the player (or NPCs) may use
 public class Weapon extends Item
