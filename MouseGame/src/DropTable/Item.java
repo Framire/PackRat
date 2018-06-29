@@ -1,3 +1,4 @@
+package DropTable;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +27,12 @@ public class Item
 			areEqual = true;
 		}
 		return areEqual;
+	}
+	
+	public String toString() {
+		String itemInfo = "Item Name: %s, ID: %d", name, itemID;
+		
+		return itemInfo;
 	}
 
 	public double getWeight()

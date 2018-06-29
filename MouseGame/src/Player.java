@@ -3,6 +3,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
+import DropTable.Item;
+
 /*
  * Describes any character in the game
  * 
@@ -29,6 +31,21 @@ public abstract class Player
 	private int gameSize;
 	private boolean isDead = false;
 	private BufferedImage avatar = null;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
+	
+	public void pickUpItem(Item item) {
+		inventory.add(item);
+	}
+
+	public void setInventory(ArrayList<Item> inventory) {
+		this.inventory = inventory;
+	}
+
+	public void dropItemsDeath(Tile tile){
+		for(Item item: inventory) {
+		tile.itemDroppedOn(item);
+		}
+	}
 	
 	public void moveLeft(ArrayList<Tile> tList){
 		Tile currentTile = tList.get(location);
@@ -433,14 +450,18 @@ public abstract class Player
 	@Override
 	public String toString()
 	{
-		return "I am " + name + "\nhealth=" + health + " damage="
+		String charInfo = "I am " + name + "\nhealth=" + health + " damage="
 				+ damage + " level=" + level + " exp=" + exp + " money=" + money + "\nstrength="
 				+ strength + " dexterity=" + dexterity + " charisma="
 				+ charisma + "\nintelligence=" + intelligence + " will=" + will
 				+ " luck=" + luck + " piety=" + piety;
+		
+		String inventory = "";
+		return charInfo + inventory;
 	}
 
 	public boolean isDead() {
+		
 		return isDead;
 	}
 

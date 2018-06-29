@@ -21,9 +21,11 @@ private Player fought = null;
 		if(direction == 0){
 			if(tList.get(p.getLocation()+1).getP()!= null){
 				attacked = tList.get(p.getLocation()+1).getP();
+				//Recall that fightOther returns true if the thing is dead.
 				if(p.fightOther(attacked)){
 					tList.get(attacked.getLocation()).setP(null);
 					tList.get(attacked.getLocation()).resetTile();
+					p.dropItemsDeath(tList.get(p.getLocation()));
 				}
 				else{
 					attacked = null;
@@ -37,6 +39,7 @@ private Player fought = null;
 				if(p.fightOther(attacked)){
 					tList.get(attacked.getLocation()).setP(null);
 					tList.get(attacked.getLocation()).resetTile();
+					p.dropItemsDeath(tList.get(p.getLocation()));
 				}
 				else{
 					attacked = null;
@@ -50,6 +53,7 @@ private Player fought = null;
 				if(p.fightOther(attacked)){
 					tList.get(attacked.getLocation()).setP(null);
 					tList.get(attacked.getLocation()).resetTile();
+					p.dropItemsDeath(tList.get(p.getLocation()));
 				}
 				else{
 					attacked = null;
@@ -63,6 +67,7 @@ private Player fought = null;
 				if(p.fightOther(attacked)){
 					tList.get(attacked.getLocation()).setP(null);
 					tList.get(attacked.getLocation()).resetTile();
+					p.dropItemsDeath(tList.get(p.getLocation()));
 				}
 				else{
 					attacked = null;

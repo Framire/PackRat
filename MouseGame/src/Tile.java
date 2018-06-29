@@ -1,8 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.swing.JPanel;
+
+import DropTable.Item;
+import DropTable.Weapon;
 
 public class Tile extends JPanel
 {
@@ -15,9 +20,41 @@ public class Tile extends JPanel
 	private int health = 1;
 	private Color c;
 	private Player p;
+	private ArrayList<Item> inventory = new ArrayList<Item>();
+	
+	public Item itemPickedUp() {
+		int itemCount = 0;
+		int userChoice = -1;
+		Scanner keyboard = new Scanner(System.in);
+		
+		for(Item item: inventory) {
+			System.out.println(itemCount + ". " + item);
+		}
+		
+		System.out.println("\nPlease choose the item you want.");
+		while(userChoice == -1 || userChoice > itemCount) {
+			try {
+				userChoice = keyboard.nextInt();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				System.out.println("Give me a whole number.");
+			}
+			
+		}
+		keyboard.close();
+		return inventory.get(userChoice);
+	}
+	
+	public void itemDroppedOn(Item item) {
+		inventory.add(item);
+	}
 	
 	public Tile() {
 		this.chooseWall();
+		if(!getIsWall()) {
+			inventory.add(new Weapon("Test", -2));
+		}
 	}
 	
 	//When given a tile, itself, that tile should randomize itself. Somewhat confusing.
@@ -221,6 +258,15 @@ public class Tile extends JPanel
 	{
 		this.p = p;
 	}
+
+	public ArrayList<Item> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(ArrayList<Item> inventory) {
+		this.inventory = inventory;
+	}
+	
 	
 	
 }

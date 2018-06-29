@@ -1,8 +1,19 @@
+package DropTable;
 
+//Describes weapons that the player (or NPCs) may use
 public class Weapon extends Item
 {
 	private int damage = 1;
 	private int rarity = 0;
+	
+	public Weapon() {
+		
+	}
+	
+	public Weapon(String name, int id) {
+		setName(name);
+		this.setItemID(id);
+	}
 	
 	public int getDamage()
 	{

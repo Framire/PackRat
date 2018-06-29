@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import DropTable.WeaponTable;
+
 /*
  * Launches and prepares the game. Checks to see if a profile exists
  * Creates a game object and gameframe
@@ -14,6 +16,9 @@ public class Driver
 	public static void main(String[] args){
 		ArrayList<Tile> tList = new ArrayList<Tile>();
 		ArrayList<Player> pList = new ArrayList<Player>();
+		
+		WeaponTable wep = new WeaponTable();
+		System.out.println(wep.getWepTable().entrySet());
 		
 		Human human = new Human();
 		File saveFile = new File("profile.txt");
