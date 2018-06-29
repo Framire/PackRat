@@ -17,13 +17,19 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import userInterface.ConsoleBox;
+
+
 public class GameFrame extends JFrame
 {
 	private JPanel tilePanel;
+
+	
 	//Manages the layout of the game and connects the player's action to the game.
 	public GameFrame(ArrayList<Tile> tList,Game game){
 		setBounds(0,0,500,500);
-		setLayout(new BorderLayout());
+		BorderLayout border = new BorderLayout();
+		setLayout(border);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("PackRat");
 		
@@ -83,6 +89,10 @@ public class GameFrame extends JFrame
 				tilePanel.add(tile);
 				//System.out.println(tile);
 		}
+		
+		ConsoleBox console = new ConsoleBox();
+		content.add(console);
+		
 		setVisible(true);
 		
 	}
@@ -95,4 +105,5 @@ public class GameFrame extends JFrame
 		return tilePanel;
 	}
 	
+
 }
