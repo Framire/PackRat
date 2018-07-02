@@ -1,6 +1,7 @@
 
  import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -90,10 +91,11 @@ public class GameFrame extends JFrame
 				//System.out.println(tile);
 		}
 		
-		ConsoleBox console = new ConsoleBox();
-		content.add(console);
-		
 		setVisible(true);
+		
+		Dimension chatDim = this.getMaximumSize();
+		ConsoleBox console = new ConsoleBox(chatDim);
+		content.add(console);
 		
 	}
 	

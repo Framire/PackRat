@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import javax.swing.JPanel;
 
-import dropTable.Item;
-import dropTable.Weapon;
+import DropTable.Item;
+import DropTable.Weapon;
 
 public class Tile extends JPanel
 {
@@ -24,25 +24,34 @@ public class Tile extends JPanel
 	
 	public Item itemPickedUp() {
 		int itemCount = 0;
+		int resetNum = -1;
 		int userChoice = -1;
+		int debug = 0;
+		if(debug > 0){
+			System.out.println("DEBUG");
+		}
 		Scanner keyboard = new Scanner(System.in);
-		
-		for(Item item: inventory) {
-			System.out.println(itemCount + ". " + item);
-		}
-		
-		System.out.println("\nPlease choose the item you want.");
-		while(userChoice == -1 || userChoice > itemCount) {
-			try {
-				userChoice = keyboard.nextInt();
+		if(inventory.size() > 0){
+			for(Item item: inventory) {
+				System.out.println(itemCount + ". " + item);
 			}
-			catch(Exception e) {
-				e.printStackTrace();
-				System.out.println("Give me a whole number.");
-			}
+		
+			System.out.println("\nPlease choose the item you want.");
+			while(resetNum == -1 || userChoice > itemCount) {
+				try {
+					resetNum = keyboard.nextInt();
+				}	
+				catch(Exception e) {
+					System.out.println("Give me a whole number.");
+					break;
+				}
 			
+			}
 		}
+		userChoice = resetNum;
+		resetNum = -1;
 		keyboard.close();
+		debug++;
 		return inventory.get(userChoice);
 	}
 	

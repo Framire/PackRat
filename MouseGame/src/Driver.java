@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import dropTable.WeaponTable;
+import DropTable.WeaponTable;
 
 /*
  * Launches and prepares the game. Checks to see if a profile exists

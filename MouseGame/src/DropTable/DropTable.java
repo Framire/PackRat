@@ -1,4 +1,4 @@
-package dropTable;
+package DropTable;
 
 import java.util.Hashtable;
 

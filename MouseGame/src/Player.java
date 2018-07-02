@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import dropTable.Item;
+import DropTable.Item;
 
 /*
  * Describes any character in the game
@@ -457,6 +457,9 @@ public abstract class Player
 				+ " luck=" + luck + " piety=" + piety;
 		
 		String inventory = "";
+		for(Item item: getInventory()){
+			inventory = inventory + item;
+		}
 		return charInfo + inventory;
 	}
 
@@ -492,6 +495,11 @@ public abstract class Player
 	public void setDamage(int damage)
 	{
 		this.damage = damage;
+	}
+
+	public ArrayList<Item> getInventory()
+	{
+		return inventory;
 	}
 	
 	

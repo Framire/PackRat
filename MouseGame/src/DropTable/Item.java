@@ -1,4 +1,4 @@
-package dropTable;
+package DropTable;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +29,7 @@ public class Item
 		return areEqual;
 	}
 	
+	@Override
 	public String toString() {
 		String itemInfo = String.format("Item Name: %s, ID: %d", name, itemID);
 		
